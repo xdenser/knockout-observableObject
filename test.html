@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+        Remove this if you use the .htaccess -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <title>test</title>
+        <meta name="description" content="" />
+        <meta name="author" content="Den" />
+
+        <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <script src="deps/jquery-1.8.3.min.js"></script>
+        <script src='deps/knockout-2.2.0.js'></script>
+        <script src='lib/ko.oo.js' ></script>
+        <script>
+           function oth(){
+               console.log('zzz');
+           }        
+        
+           $(function(){
+               var z =ko.observableObject({
+                    value1: 0,
+                    value2: 3,
+                    value3: 0,
+                    arr: [1,2,3],
+                    doSomething: function(){
+                        this.value3 = this.value1+ this.value2 + this.value3;
+                        this.arr[0]++;
+                        this.arr.push(this.value3);
+                        this.other = oth;
+                        this.value2 = 4;
+                    }
+               });
+               z.subscribe(function(event){
+                   console.log('change',event);
+               },this,'propertyChange');
+               ko.applyBindings(z); 
+           });
+        </script>
+    </head>
+
+    <body>
+        <div>
+            <header>
+                <h1>test</h1>
+            </header>
+            <div>
+               <span data-bind='text:value1'></span>
+               <span data-bind='text:value2'></span>
+               <span data-bind='text:value3'></span>
+               <ul data-bind='foreach: arr'>
+                   <li data-bind='text: $data'></li>
+               </ul>     
+            </div>    
+            <button data-bind='click: doSomething'>Booo</button>
+            
+            <nav>
+                <p>
+                    <a href="/">Home</a>
+                </p>
+                <p>
+                    <a href="/contact">Contact</a>
+                </p>
+            </nav>
+
+            <div>
+
+            </div>
+
+            <footer>
+                <p>
+                    &copy; Copyright  by Den
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>

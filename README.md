@@ -1,0 +1,1 @@
+experiment with observableObject for KnockoutJS
