@@ -32,6 +32,7 @@
                         this.value3 = this.value1+ this.value2 + this.value3;
                         this.arr[0]++;
                         this.arr.push(this.value3);
+                        if(this.arr.length>10) this.arr = [1,2,3];
                         this.other = oth;
                         this.value2 = 4;
                     }
